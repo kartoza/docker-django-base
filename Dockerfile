@@ -23,7 +23,7 @@
 #
 # Tim Sutton, December 2014
 
-FROM python:2.7.8
+FROM python:2.7
 MAINTAINER Tim Sutton<tim@linfiniti.com>
 
 RUN  export DEBIAN_FRONTEND=noninteractive
