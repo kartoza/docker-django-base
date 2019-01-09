@@ -34,21 +34,22 @@ RUN  dpkg-divert --local --rename --add /sbin/initctl
 # Use local cached debs from host (saves your bandwidth!)
 # Change ip below to that of your apt-cacher-ng host
 # Or comment this line out if you do not with to use caching
-ADD 71-apt-cacher-ng /etc/apt/apt.conf.d/71-apt-cacher-ng
 RUN apt-get -y update
 RUN apt-get -y install \
     python-gdal \
     python-geoip \
-    npm \
-    nodejs \
+    sudo \
+    curl \
     rpl
+RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash 
+RUN apt-get install -y nodejs
 RUN npm -g install yuglify
 
 # Debian is messed up and aliases node as nodejs
 # So when yuglify is installed it references the wrong node binary...
 # lets fix that here...
 
-RUN rpl "env node" "env nodejs" /usr/local/lib/node_modules/yuglify/bin/yuglify
+RUN rpl "env node" "env nodejs" /usr/bin/yuglify
 
 ADD uwsgi.conf /uwsgi.conf
 

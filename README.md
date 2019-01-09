@@ -32,31 +32,19 @@ will be easy to update thereafter.
 docker pull kartoza/django-base
 ```
 
-## Build with no package caching
+## Build with no local checkout
 
 
-to build the image without apt-cacher do:
+to build the image without checking out the build repo do:
 
 ```
 docker build -t kartoza/django-base git://github.com/timlinux/docker-django-base
 ```
 
-## Build locally or with apt-cacher-ng caching locally
-
-**Note:** we recommend using ``apt-cacher-ng`` to speed up package fetching -
-you should configure the host for it in the provided 71-apt-cacher-ng file.
-
-To build with apt-cacher-ng do you need to clone this repo locally first and 
-modify the contents of 71-apt-cacher-ng to match your cacher host. then 
-build using a local url instead of directly from github.
+## Build locally or with locally checked out code
 
 ```
 git clone git://github.com/timlinux/docker-django-base
-```
-
-now edit ``71-apt-cacher-ng`` then do:
-
-```
 docker build -t kartoza/django-base .
 ```
 

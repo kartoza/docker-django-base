@@ -1,2 +1,2 @@
 #!/bin/sh
-docker build -t kartoza/django-base .
+docker build -t kartoza/django-base:3.7 .
